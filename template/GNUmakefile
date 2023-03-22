@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: MIT
-# DBuild version 1.0.1
+# DBuild version 1.0.2
 # Root-level Makefile for the DBuild build system. This is the "heart" of the
 # build system, implementing most of the logic used.
 
