@@ -1,0 +1,16 @@
+# SPDX-License-Identifier: MIT
+
+%.c.o: $(src)/%.c
+	@echo -e CC\\t$(relsrc)$@
+	$(Q)$(CC) $(CFLAGS) -c -o $@ $< -MMD -MP -MF $@.d
+
+built-in.a: $(obj)
+	@echo -e AR\\t$(relsrc)$@
+	$(Q)if [ -f $@ ]; then rm $@; fi
+	$(Q)ar cDPrT $@ $(patsubst %/,%/built-in.a,$^)
+
+%/built-in.a: FORCE
+	$(Q)mkdir -p $*
+	$(Q)$(call do-submake,$*) built-in.a
+
+dep += $(patsubst %,%.d,$(obj))

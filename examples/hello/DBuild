@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: MIT
+
+override CC := gcc
+override CFLAGS := -Wall -Wextra -Werror -pedantic
+
+targets += hello
+hello-obj := hello.c.o
+
+hello: $(hello-obj)
+	@echo -e LINK\\t$@
+	$(Q)$(CC) -o $@ $^
+
+%.c.o: $(src)/%.c
+	@echo -e CC\\t$@
+	$(Q)$(CC) $(CFLAGS) -c -o $@ $< -MMD -MP -MF $@.d
+
+dep += $(patsubst %.o,%.o.d,$(hello-obj))

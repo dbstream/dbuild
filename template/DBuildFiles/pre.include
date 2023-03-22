@@ -1,0 +1,11 @@
+# SPDX-License-Identifier: MIT
+
+# Declare variables used in post.include.
+# ---------------------------------------
+targets := $(empty)
+dep := $(empty)
+
+# The first target in the Makefile, chain it to all.
+# --------------------------------------------------
+.PHONY: __all
+__all: all

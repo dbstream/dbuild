@@ -1,0 +1,10 @@
+# SPDX-License-Identifier: MIT
+
+# Now that targets is populated, declare all.
+# -------------------------------------------
+.PHONY: all
+all: $(targets)
+
+# Include our dependencies.
+# -------------------------
+-include $(dep)

@@ -1,0 +1,16 @@
+# SPDX-License-Identifier: MIT
+
+dbuild-post-files += $(src)/declare_rules.include
+
+override CC := gcc
+override CFLAGS := -Wall -Wextra -Werror -pedantic
+export CC CFLAGS
+
+targets += hello
+hello-obj := built-in.a
+
+obj += hello.c.o dir/built-in.a
+
+hello: $(hello-obj)
+	@echo -e LINK\\t$@
+	$(Q)$(CC) -o $@ $^
