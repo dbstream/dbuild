@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: MIT
-# DBuild version 1.0
+# DBuild version 1.0.1
 # Root-level Makefile for the DBuild build system. This is the "heart" of the
 # build system, implementing most of the logic used.
 
@@ -26,6 +26,7 @@ override dbuild-debug = $(empty)
 override dbuild-reverse = $(if $(wordlist 2,2,$(1)),$(call dbuild-reverse,$(wordlist 2,$(words $(1)),$(1))) $(firstword $(1)),$(1))
 
 override do-submake = $(MAKE) -C $1 -f $(dbuild-makefile) relsrc=$(relsrc)$1/ src=$(src)/$1
+override reinvoke-self = $(MAKE) -f $(dbuild-makefile) relsrc=$(relsrc) src=$(src)
 
 # Let the user specify verbosity (whether or not commands are printed).
 # ---------------------------------------------------------------------
